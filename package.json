@@ -1,0 +1,50 @@
+{
+  "author": "Christoph Guttandin",
+  "bugs": {
+    "url": "https://github.com/chrisguttandin/web-timing-demo/issues"
+  },
+  "description": "A website to demo the Web Timing Object.",
+  "devDependencies": {
+    "aperture": "^2.1.1",
+    "autoprefixer": "^7.1.2",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.1",
+    "babel-preset-env": "^1.6.0",
+    "cssnano": "^3.10.0",
+    "eslint-config-holy-grail": "^19.0.1",
+    "greenkeeper-lockfile": "^1.8.1",
+    "grunt": "^1.0.1",
+    "grunt-cli": "^1.2.0",
+    "grunt-contrib-clean": "^1.1.0",
+    "grunt-contrib-connect": "^1.0.2",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-htmlmin": "^2.4.0",
+    "grunt-contrib-uglify": "^3.0.1",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-gh-pages": "^2.0.0",
+    "grunt-htmlhint": "^0.9.13",
+    "grunt-if": "^0.1.5",
+    "grunt-postcss": "^0.8.0",
+    "grunt-webpack": "^3.0.2",
+    "gruntify-eslint": "^4.0.0",
+    "husky": "^0.14.3",
+    "load-grunt-config": "^0.19.2",
+    "stylelint": "^8.0.0",
+    "stylelint-config-holy-grail": "^1.0.0",
+    "webpack": "^3.5.5"
+  },
+  "homepage": "https://chrisguttandin.github.io/web-timing-demo",
+  "license": "MIT",
+  "main": "src/index.html",
+  "name": "web-timing-demo",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chrisguttandin/web-timing-demo.git"
+  },
+  "scripts": {
+    "precommit": "grunt lint",
+    "test": "grunt lint"
+  },
+  "version": "1.0.0"
+}
