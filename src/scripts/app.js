@@ -5,6 +5,7 @@ const arrayBuffer = new ArrayBuffer(2);
 const uint8Array = new Uint8Array(arrayBuffer);
 const uint16Array = new Uint16Array(arrayBuffer);
 
+// eslint-disable-next-line padding-line-between-statements
 const changeColor = (timingObject) => {
     uint8Array[0] = Math.floor(Math.random() * 256);
     uint8Array[1] = Math.floor(Math.random() * 256);
