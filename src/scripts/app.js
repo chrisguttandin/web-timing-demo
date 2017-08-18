@@ -26,17 +26,17 @@ app
                     changeColor(timingObject);
                 });
 
-                const updateColour = () => {
+                const updateColor = () => {
                     const { position } = timingObject.query();
 
                     uint16Array[0] = position;
 
                     document.body.style.backgroundColor = `rgb(${ uint8Array[0] },${ uint8Array[1] },255)`;
 
-                    requestAnimationFrame(() => updateColour());
+                    requestAnimationFrame(() => updateColor());
                 };
 
-                requestAnimationFrame(() => updateColour());
+                requestAnimationFrame(() => updateColor());
             });
     });
 
