@@ -1,6 +1,7 @@
 const APPID_MCORP = '3705418343321362065';
 const app = MCorp.app(APPID_MCORP, { anon: true, range: [ 0, 65535 ] }); // eslint-disable-line no-undef
 const $changeColorButton = document.getElementById('change-color');
+const $connectingMessageSpan = document.getElementById('connecting-message');
 const arrayBuffer = new ArrayBuffer(2);
 const uint8Array = new Uint8Array(arrayBuffer);
 const uint16Array = new Uint16Array(arrayBuffer);
@@ -21,6 +22,8 @@ app
         timingObject
             .ready
             .then(() => {
+                $connectingMessageSpan.style.display = 'none';
+
                 $changeColorButton.style.display = 'block';
                 $changeColorButton.addEventListener('click', () => {
                     changeColor(timingObject);
