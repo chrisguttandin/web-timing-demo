@@ -1,5 +1,16 @@
 const APPID_MCORP = '3705418343321362065';
 const app = MCorp.app(APPID_MCORP, { anon: true, range: [ 0, 65535 ] }); // eslint-disable-line no-undef
+const $changeColorButton = document.getElementById('change-color');
+const arrayBuffer = new ArrayBuffer(2);
+const uint8Array = new Uint8Array(arrayBuffer);
+const uint16Array = new Uint16Array(arrayBuffer);
+
+const changeColor = (timingObject) => {
+    uint8Array[0] = Math.floor(Math.random() * 256);
+    uint8Array[1] = Math.floor(Math.random() * 256);
+
+    timingObject.update({ position: uint16Array[0], velocity: 1 });
+};
 
 app
     .ready
@@ -9,14 +20,10 @@ app
         timingObject
             .ready
             .then(() => {
-                const arrayBuffer = new ArrayBuffer(2);
-                const uint8Array = new Uint8Array(arrayBuffer);
-                const uint16Array = new Uint16Array(arrayBuffer);
-
-                uint8Array[0] = Math.floor(Math.random() * 256);
-                uint8Array[1] = Math.floor(Math.random() * 256);
-
-                timingObject.update({ position: uint16Array[0], velocity: 1 });
+                $changeColorButton.style.display = 'block';
+                $changeColorButton.addEventListener('click', () => {
+                    changeColor(timingObject);
+                });
 
                 const updateColour = () => {
                     const { position } = timingObject.query();
