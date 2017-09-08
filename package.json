@@ -32,7 +32,7 @@
     "load-grunt-config": "^0.19.2",
     "stylelint": "^8.1.1",
     "stylelint-config-holy-grail": "^1.0.0",
-    "webpack": "^3.5.5"
+    "webpack": "^3.5.6"
   },
   "homepage": "https://chrisguttandin.github.io/web-timing-demo",
   "license": "MIT",
