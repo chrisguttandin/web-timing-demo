@@ -1,7 +1,6 @@
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 const stylelint = require('stylelint');
-const stylelintConfigHolyGrail = require('stylelint-config-holy-grail');
 
 module.exports = {
     development: {
@@ -22,8 +21,7 @@ module.exports = {
     lint: {
         options: {
             processors: [
-                // @todo This should use { extends: 'stylelint-config-holy-grail' } but that is not possible with grunt-postcss@0.8.0.
-                stylelint(stylelintConfigHolyGrail)
+                stylelint({ config: { extends: 'stylelint-config-holy-grail' } })
             ],
             writeDest: false
         },
