@@ -3,6 +3,11 @@
   "bugs": {
     "url": "https://github.com/chrisguttandin/web-timing-demo/issues"
   },
+  "dependencies": {
+    "rxjs": "^5.4.3",
+    "rxjs-broker": "^2.0.31",
+    "tslib": "^1.8.0"
+  },
   "description": "A website to demo the Web Timing Object.",
   "devDependencies": {
     "aperture": "^2.1.1",

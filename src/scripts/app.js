@@ -1,8 +1,13 @@
+import { TimingProvider } from './timing-provider';
+
 const APPID_MCORP = '3705418343321362065';
 const app = MCorp.app(APPID_MCORP, { anon: true, range: [ 0, 65535 ] }); // eslint-disable-line no-undef
+const $leftPlain = document.getElementById('left-plain');
 const $changeColorButton = document.getElementById('change-color');
 const $connectingMessageSpan = document.getElementById('connecting-message');
+const $rightPlain = document.getElementById('right-plain');
 const arrayBuffer = new ArrayBuffer(2);
+const timingProvider = new TimingProvider('abcdefghijklmno01234');
 const uint8Array = new Uint8Array(arrayBuffer);
 const uint16Array = new Uint16Array(arrayBuffer);
 
@@ -12,35 +17,55 @@ const changeColor = (timingObject) => {
     uint8Array[1] = Math.floor(Math.random() * 256);
 
     timingObject.update({ position: uint16Array[0], velocity: 1 });
+    timingProvider.update({ position: uint16Array[0], velocity: 0 });
 };
 
-app
-    .ready
-    .then(() => {
-        const timingObject = new TIMINGSRC.TimingObject({ provider: app.motions.shared }); // eslint-disable-line no-undef
-
-        timingObject
+Promise
+    .all([
+        app
             .ready
             .then(() => {
-                $connectingMessageSpan.style.display = 'none';
+                const timingObject = new TIMINGSRC.TimingObject({ provider: app.motions.shared }); // eslint-disable-line no-undef
 
-                $changeColorButton.style.display = 'block';
-                $changeColorButton.addEventListener('click', () => {
-                    changeColor(timingObject);
-                });
-
-                const updateColor = () => {
-                    const { position } = timingObject.query();
-
-                    uint16Array[0] = position;
-
-                    document.body.style.backgroundColor = `rgb(${ uint8Array[0] },${ uint8Array[1] },255)`;
-
-                    requestAnimationFrame(() => updateColor());
-                };
-
-                requestAnimationFrame(() => updateColor());
+                return timingObject
+                    .ready
+                    .then(() => timingObject);
+            }),
+        new Promise((resolve) => {
+            timingProvider.addEventListener('readystatechange', () => {
+                if (timingProvider.readyState === 'open') {
+                    setTimeout(() => resolve(timingProvider), 5000);
+                }
             });
+        })
+    ])
+    .then(([ timingObject, timingProvider ]) => {
+        $connectingMessageSpan.style.display = 'none';
+
+        $changeColorButton.style.display = 'block';
+        $changeColorButton.addEventListener('click', () => {
+            changeColor(timingObject, timingProvider);
+        });
+
+        const updateColor = () => {
+            const { position } = timingObject.query();
+
+            uint16Array[0] = position;
+
+            $leftPlain.style.backgroundColor = `rgb(${ uint8Array[0] },${ uint8Array[1] },255)`;
+
+            const vector = timingProvider.vector;
+
+            if (vector !== undefined) {
+                uint16Array[0] = vector.position;
+
+                $rightPlain.style.backgroundColor = `rgb(${ uint8Array[0] },${ uint8Array[1] },255)`;
+            }
+
+            requestAnimationFrame(() => updateColor());
+        };
+
+        requestAnimationFrame(() => updateColor());
     });
 
 app.init();

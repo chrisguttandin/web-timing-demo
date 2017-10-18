@@ -2,6 +2,28 @@ body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+#left-plain {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 50%;
+}
+
+#right-plain {
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 50%;
+}
+
+button,
+h1,
+span {
+    position: relative;
+}
+
 #change-color {
     display: none;
 }
