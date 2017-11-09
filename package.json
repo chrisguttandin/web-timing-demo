@@ -5,7 +5,7 @@
   },
   "dependencies": {
     "rxjs": "^5.5.2",
-    "rxjs-broker": "^2.1.4",
+    "rxjs-broker": "^2.1.5",
     "tslib": "^1.8.0"
   },
   "description": "A website to demo the Web Timing Object.",
