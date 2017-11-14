@@ -2,7 +2,7 @@ const { resolve } = require('path');
 const { optimize: { ModuleConcatenationPlugin } } = require('webpack');
 
 module.exports = {
-    deault: {
+    default: {
         entry: {
             app: './src/scripts/app.js'
         },
