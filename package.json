@@ -4,7 +4,7 @@
     "url": "https://github.com/chrisguttandin/web-timing-demo/issues"
   },
   "dependencies": {
-    "rxjs": "^5.5.5",
+    "rxjs": "^5.5.6",
     "rxjs-broker": "^2.1.15",
     "tslib": "^1.8.1"
   },
