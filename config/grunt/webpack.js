@@ -1,11 +1,11 @@
 const { resolve } = require('path');
-const { optimize: { ModuleConcatenationPlugin } } = require('webpack');
 
 module.exports = {
-    default: {
+    development: {
         entry: {
             app: './src/scripts/app.js'
         },
+        mode: 'development',
         module: {
             rules: [ {
                 exclude: /node_modules/,
@@ -25,9 +25,32 @@ module.exports = {
         output: {
             filename: '[name].js',
             path: resolve('build/scripts')
+        }
+    },
+    production: {
+        entry: {
+            app: './src/scripts/app.js'
         },
-        plugins: [
-            new ModuleConcatenationPlugin()
-        ]
+        mode: 'production',
+        module: {
+            rules: [ {
+                exclude: /node_modules/,
+                test: /\.js$/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: [ [ 'env', {
+                            targets: {
+                                browsers: [ 'last 2 versions' ]
+                            }
+                        } ] ]
+                    }
+                }
+            } ]
+        },
+        output: {
+            filename: '[name].js',
+            path: resolve('build/scripts')
+        }
     }
 };
