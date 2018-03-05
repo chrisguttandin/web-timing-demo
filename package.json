@@ -3,6 +3,11 @@
   "bugs": {
     "url": "https://github.com/chrisguttandin/web-timing-demo/issues"
   },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
   "dependencies": {
     "rxjs": "^5.5.6",
     "rxjs-broker": "^2.2.9",
