@@ -55,6 +55,7 @@
     "url": "https://github.com/chrisguttandin/web-timing-demo.git"
   },
   "scripts": {
+    "commitmsg": "commitlint --edit --extends @commitlint/config-angular",
     "precommit": "grunt lint",
     "test": "grunt lint"
   },
