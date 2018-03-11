@@ -1,3 +1,9 @@
+const filter = (tasks) => tasks.filter((task) => task !== null);
+const isVersionUpdate = (process.env.TRAVIS === 'true' &&
+    process.env.TRAVIS_PULL_REQUEST === 'false' &&
+    process.env.TRAVIS_SECURE_ENV_VARS === 'true' &&
+    process.env.TRAVIS_TAG !== '');
+
 module.exports = {
     'build:development': [
         'clean',
@@ -15,9 +21,9 @@ module.exports = {
         'build:production',
         'gh-pages:deploy'
     ],
-    'deploy-on-version-updates': [
-        'if:deploy'
-    ],
+    'deploy-on-version-updates': filter([
+        (isVersionUpdate) ? 'deploy' : null
+    ]),
     'lint': [
         'eslint',
         'htmlhint',
