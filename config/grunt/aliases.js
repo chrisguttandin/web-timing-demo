@@ -38,5 +38,8 @@ module.exports = {
         'build:production',
         'connect',
         'watch:production'
+    ],
+    'smoke': [
+        'sh:hyperlink'
     ]
 };
