@@ -9,7 +9,7 @@
     }
   },
   "dependencies": {
-    "rxjs": "^6.2.0",
+    "rxjs": "^6.2.1",
     "rxjs-broker": "^3.0.7",
     "tslib": "^1.9.2"
   },
