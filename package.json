@@ -60,5 +60,5 @@
     "precommit": "grunt lint",
     "test": "grunt lint"
   },
-  "version": "1.2.61"
+  "version": "1.2.62"
 }
