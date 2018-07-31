@@ -7,12 +7,11 @@ const $changeColorButton = document.getElementById('change-color');
 const $connectingMessageSpan = document.getElementById('connecting-message');
 const $rightPlain = document.getElementById('right-plain');
 const arrayBuffer = new ArrayBuffer(2);
-const timingProvider = new TimingProvider('abcdefghijklmno01234');
 const uint8Array = new Uint8Array(arrayBuffer);
 const uint16Array = new Uint16Array(arrayBuffer);
 
 // eslint-disable-next-line padding-line-between-statements
-const changeColor = (timingObject) => {
+const changeColor = (timingObject, timingProvider) => {
     uint8Array[0] = Math.floor(Math.random() * 256);
     uint8Array[1] = Math.floor(Math.random() * 256);
 
@@ -32,6 +31,8 @@ Promise
                     .then(() => timingObject);
             }),
         new Promise((resolve) => {
+            const timingProvider = new TimingProvider('abcdefghijklmno01234');
+
             timingProvider.addEventListener('readystatechange', () => {
                 if (timingProvider.readyState === 'open') {
                     setTimeout(() => resolve(timingProvider), 5000);
