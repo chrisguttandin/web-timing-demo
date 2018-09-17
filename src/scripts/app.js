@@ -1,4 +1,4 @@
-import { TimingProvider } from './timing-provider';
+import { TimingProvider } from 'timing-provider';
 
 const APPID_MCORP = '3705418343321362065';
 const app = MCorp.app(APPID_MCORP, { anon: true, range: [ 0, 65535 ] }); // eslint-disable-line no-undef
