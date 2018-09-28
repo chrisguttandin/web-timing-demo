@@ -46,6 +46,12 @@
     "webpack": "^4.20.2"
   },
   "homepage": "https://chrisguttandin.github.io/web-timing-demo",
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint --edit --extends @commitlint/config-angular",
+      "pre-commit": "grunt lint"
+    }
+  },
   "license": "MIT",
   "main": "src/index.html",
   "name": "web-timing-demo",
@@ -55,8 +61,6 @@
     "url": "https://github.com/chrisguttandin/web-timing-demo.git"
   },
   "scripts": {
-    "commitmsg": "commitlint --edit --extends @commitlint/config-angular",
-    "precommit": "grunt lint",
     "test": "grunt lint"
   },
   "version": "1.2.77"
