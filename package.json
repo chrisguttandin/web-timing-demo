@@ -43,7 +43,7 @@
     "load-grunt-config": "^1.0.1",
     "stylelint": "^9.10.1",
     "stylelint-config-holy-grail": "^4.0.0",
-    "webpack": "^4.29.3"
+    "webpack": "^4.29.4"
   },
   "homepage": "https://chrisguttandin.github.io/web-timing-demo",
   "husky": {
