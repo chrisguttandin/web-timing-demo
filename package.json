@@ -11,7 +11,7 @@
   "dependencies": {
     "rxjs": "^6.4.0",
     "timing-object": "^2.0.13",
-    "timing-provider": "^2.0.40",
+    "timing-provider": "^2.0.42",
     "tslib": "^1.9.3"
   },
   "description": "A website to demo the Web Timing Object.",
