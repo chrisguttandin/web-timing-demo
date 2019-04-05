@@ -12,12 +12,11 @@ const uint8Array = new Uint8Array(arrayBuffer);
 const uint16Array = new Uint16Array(arrayBuffer);
 
 // eslint-disable-next-line padding-line-between-statements
-const changeColor = (timingObject, timingProvider) => {
+const changeColor = (...timingObjects) => {
     uint8Array[0] = Math.floor(Math.random() * 256);
     uint8Array[1] = Math.floor(Math.random() * 256);
 
-    timingObject.update({ position: uint16Array[0], velocity: 1 });
-    timingProvider.update({ position: uint16Array[0], velocity: 0 });
+    timingObjects.forEach((timingObject) => timingObject.update({ position: uint16Array[0], velocity: 0 }));
 };
 
 Promise
