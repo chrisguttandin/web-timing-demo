@@ -1,3 +1,4 @@
+import { TimingObject } from 'timing-object';
 import { TimingProvider } from 'timing-provider';
 
 const APPID_MCORP = '3705418343321362065';
@@ -31,37 +32,36 @@ Promise
                     .then(() => timingObject);
             }),
         new Promise((resolve) => {
-            const timingProvider = new TimingProvider('abcdefghijklmno01234');
+            const timingObject = new TimingObject(new TimingProvider('abcdefghijklmno01234'));
+            const onReadystateChange = () => {
+                timingObject.removeEventListener('readystatechange', onReadystateChange);
 
-            timingProvider.addEventListener('readystatechange', () => {
-                if (timingProvider.readyState === 'open') {
-                    setTimeout(() => resolve(timingProvider), 5000);
+                if (timingObject.readyState === 'open') {
+                    resolve(timingObject);
                 }
-            });
+            };
+
+            timingObject.addEventListener('readystatechange', onReadystateChange);
         })
     ])
-    .then(([ timingObject, timingProvider ]) => {
+    .then(([ timingSrcTimingObject, webRtcTimingObject ]) => {
         $connectingMessageSpan.style.display = 'none';
 
         $changeColorButton.style.display = 'block';
         $changeColorButton.addEventListener('click', () => {
-            changeColor(timingObject, timingProvider);
+            changeColor(timingSrcTimingObject, webRtcTimingObject);
         });
 
-        const updateColor = () => {
+        const renderColor = ($plain, timingObject) => {
             const { position } = timingObject.query();
 
             uint16Array[0] = position;
 
-            $leftPlain.style.backgroundColor = `rgb(${ uint8Array[0] },${ uint8Array[1] },255)`;
-
-            const vector = timingProvider.vector;
-
-            if (vector !== undefined) {
-                uint16Array[0] = vector.position;
-
-                $rightPlain.style.backgroundColor = `rgb(${ uint8Array[0] },${ uint8Array[1] },255)`;
-            }
+            $plain.style.backgroundColor = `rgb(${ uint8Array[0] },${ uint8Array[1] },255)`;
+        };
+        const updateColor = () => {
+            renderColor($leftPlain, timingSrcTimingObject);
+            renderColor($rightPlain, webRtcTimingObject);
 
             requestAnimationFrame(() => updateColor());
         };
