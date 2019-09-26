@@ -19,6 +19,15 @@ const changeColor = (...timingObjects) => {
     timingObjects.forEach((timingObject) => timingObject.update({ position: uint16Array[0], velocity: 0 }));
 };
 
+// eslint-disable-next-line padding-line-between-statements
+const renderColor = ($plain, timingObject) => {
+    const { position } = timingObject.query();
+
+    uint16Array[0] = position;
+
+    $plain.style.backgroundColor = `rgb(${ uint8Array[0] },${ uint8Array[1] },255)`;
+};
+
 Promise
     .all([
         app
@@ -51,13 +60,6 @@ Promise
             changeColor(timingSrcTimingObject, webRtcTimingObject);
         });
 
-        const renderColor = ($plain, timingObject) => {
-            const { position } = timingObject.query();
-
-            uint16Array[0] = position;
-
-            $plain.style.backgroundColor = `rgb(${ uint8Array[0] },${ uint8Array[1] },255)`;
-        };
         const updateColor = () => {
             renderColor($leftPlain, timingSrcTimingObject);
             renderColor($rightPlain, webRtcTimingObject);
