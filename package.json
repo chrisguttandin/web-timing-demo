@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "rxjs": "^6.5.3",
-    "timing-object": "^2.1.11",
+    "timing-object": "^2.1.12",
     "timing-provider": "^3.0.25",
     "tslib": "^1.10.0"
   },
