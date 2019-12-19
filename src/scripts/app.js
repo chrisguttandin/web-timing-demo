@@ -2,30 +2,31 @@ import { TimingObject } from 'timing-object';
 import { TimingProvider } from 'timing-provider';
 
 const APPID_MCORP = '3705418343321362065';
-const app = MCorp.app(APPID_MCORP, { anon: true, range: [ 0, 65535 ] }); // eslint-disable-line no-undef
+const app = MCorp.app(APPID_MCORP, { anon: true, range: [ 0, 4294967040 ] }); // eslint-disable-line no-undef
 const $leftPlain = document.getElementById('left-plain');
 const $changeColorButton = document.getElementById('change-color');
 const $connectingMessageSpan = document.getElementById('connecting-message');
 const $rightPlain = document.getElementById('right-plain');
-const arrayBuffer = new ArrayBuffer(2);
+const arrayBuffer = new ArrayBuffer(4);
 const uint8Array = new Uint8Array(arrayBuffer);
-const uint16Array = new Uint16Array(arrayBuffer);
+const uint32Array = new Uint32Array(arrayBuffer);
 
 // eslint-disable-next-line padding-line-between-statements
 const changeColor = (...timingObjects) => {
-    uint8Array[0] = Math.floor(Math.random() * 256);
     uint8Array[1] = Math.floor(Math.random() * 256);
+    uint8Array[2] = Math.floor(Math.random() * 256);
+    uint8Array[3] = Math.floor(Math.random() * 256);
 
-    timingObjects.forEach((timingObject) => timingObject.update({ position: uint16Array[0], velocity: 0 }));
+    timingObjects.forEach((timingObject) => timingObject.update({ position: uint32Array[0], velocity: 0 }));
 };
 
 // eslint-disable-next-line padding-line-between-statements
 const renderColor = ($plain, timingObject) => {
     const { position } = timingObject.query();
 
-    uint16Array[0] = position;
+    uint32Array[0] = position;
 
-    $plain.style.backgroundColor = `rgb(${ uint8Array[0] },${ uint8Array[1] },255)`;
+    $plain.style.backgroundColor = `rgb(${ uint8Array[1] },${ uint8Array[2] },${ uint8Array[3] })`;
 };
 
 Promise
