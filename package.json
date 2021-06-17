@@ -48,12 +48,6 @@
         "webpack": "^5.39.0"
     },
     "homepage": "https://chrisguttandin.github.io/web-timing-demo",
-    "husky": {
-        "hooks": {
-            "commit-msg": "commitlint --edit --extends @commitlint/config-angular",
-            "pre-commit": "pretty-quick --config config/prettier/config.json --staged && grunt lint"
-        }
-    },
     "license": "MIT",
     "main": "src/index.html",
     "name": "web-timing-demo",
@@ -63,6 +57,7 @@
         "url": "https://github.com/chrisguttandin/web-timing-demo.git"
     },
     "scripts": {
+        "prepare": "husky install",
         "test": "grunt lint"
     },
     "version": "1.4.54"
