@@ -11,7 +11,7 @@
     "dependencies": {
         "timing-object": "^3.1.54",
         "timing-provider": "^6.2.13",
-        "tslib": "^2.4.1"
+        "tslib": "^2.5.0"
     },
     "description": "A website to demo the Web Timing Object.",
     "devDependencies": {
