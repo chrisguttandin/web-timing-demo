@@ -10,7 +10,7 @@
     },
     "dependencies": {
         "timing-object": "^3.1.89",
-        "timing-provider": "^7.1.26",
+        "timing-provider": "^7.1.28",
         "tslib": "^2.8.1"
     },
     "description": "A website to demo the Web Timing Object.",
